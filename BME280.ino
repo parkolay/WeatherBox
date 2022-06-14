@@ -22,6 +22,13 @@ void UpdateBME280 ()
     Serial.print("Temperature = ");
     Serial.print((BME280_Temperature * 9 / 5) + 32);
     Serial.println(" *f");
+    
+    Serial.print(" Dewpoint: ");
+    Serial.print(bme280.dewPointC(), 2);
+    Serial.println(" *C");
+    Serial.print(" Dewpoint: ");
+    Serial.print(bme280.dewPointF(), 2);
+    Serial.println(" *f");
 
 //  BME280_Altitude = bme280.readAltitude(SEALEVELPRESSURE_HPA);
     Serial.print("Approx. Altitude = ");

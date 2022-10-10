@@ -25,4 +25,5 @@
  *   
  *   
  *   Created: Feb 6, 2019 by Dan Parkolay (with a lot of help from a lot of other people)
+ *   Updated: Oct 9, 2022 by Dan Parkolay (Removed HTM1735LF, updated Display values added INT for DST input)
 */

@@ -15,7 +15,7 @@
  * 
  *  // Pinout
  *  //  MQ135 analog Output --> A00
- *  //  Interrupt           --> D02
+ *  //  Interrupt           --> D02 with INT0
  *  //  SCL                 --> A04 Tied HIGH W/ 3k3 Ohm resistor
  *  //  SDA                 --> A05 Tied HIGH W/ 3k3 Ohm resistor
  * (value of I2C pull up can vary, check out the link below) 

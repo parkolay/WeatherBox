@@ -30,17 +30,16 @@ void UpdateDisplay()
 {
   GetLine1();
   GetLine2();
-  //GetLine3();
+  GetLine3();
   GetLine4();
   GetLine5();
-  //GetLine6();
+  GetLine6();
 }
 
 void GetLine1()
 {
     u8g2.setFont(u8g2_font_ncenB12_tr);
-    //u8g2.drawStr(0,13,"Air Quality Sensor");//I don't know if this will fit on display :(
-    u8g2.drawStr(0,13,"AirQltySensor");
+    u8g2.drawStr(0,13,"Air Qty Sensor");//I don't know if this will fit on display :(
 }
 
 void GetLine2()
@@ -53,10 +52,11 @@ void GetLine2()
 void GetLine3()
 {
     u8g2.setCursor(0,34);
-    u8g2.print("012345678901234567890"); 
-//    u8g2.print(samples[1]); 
-//    u8g2.setCursor(42,34);
-//    u8g2.print(TempSensorAverage); 
+    u8g2.print("Dew Point = ");
+    u8g2.print(BME280_DewPoint);
+    u8g2.println(" *f");
+    // u8g2.setCursor(42,34);
+    // u8g2.print("012345678901234567890");
     
 }
 
@@ -74,7 +74,6 @@ void GetLine4()
 
 void GetLine5()
 {
-    
     //u8g2.setCursor(0,54);
     //u8g2.print("012345678901234567890"); 
     u8g2.setCursor(0,54);
@@ -85,22 +84,45 @@ void GetLine5()
     u8g2.print(" *f ");
     //u8g2.setCursor(72,54); 
     //u8g2.setCursor(96,54); 
-
 }
 
 void GetLine6()
 {
+    u8g2.setFont(u8g2_font_ncenB08_tr);
     u8g2.setCursor(0,64);
-    u8g2.print("012345678901234567890"); 
-//    u8g2.print(RHRawSensorValue);
-//    //u8g2.setCursor(25,64);
-//    u8g2.print("Tks ");
-//    //u8g2.setCursor(43,64);
-//    u8g2.print(RHSensorValue);
-//   // u8g2.setCursor(64,64);
-//    u8g2.print("V ");
-//    //u8g2.setCursor(72,64); 
-//    u8g2.print(RHValue); 
-//    //u8g2.setCursor(96,64); 
-//    u8g2.print("%RH"); 
+    //u8g2.print(" "); 
+
+    if (hours <=9)
+    {
+      u8g2.print("0"); 
+    }
+    u8g2.print(hours); 
+    u8g2.print(":"); 
+    if (minutes <=9)
+    {
+      u8g2.print("0"); 
+    }
+    u8g2.print(minutes); 
+    u8g2.print(":"); 
+    if (seconds <=9)
+    {
+      u8g2.print("0"); 
+    }
+    u8g2.print(seconds); 
+    
+    u8g2.setCursor(64,64); //start calendar in the middle
+    if (days <=9)
+    {
+      u8g2.print("0"); 
+    }
+    u8g2.print(days); 
+    u8g2.print("/"); 
+    if (months <=9)
+    {
+      u8g2.print("0"); 
+    }
+    u8g2.print(months); 
+    u8g2.print("/"); 
+    u8g2.print(years); 
+    u8g2.print(" "); 
 }

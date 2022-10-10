@@ -1,7 +1,7 @@
 /*  This sketch sets up a small OLED display and pulls analog signals from two sensors 
  *  MQ135(air quality --> SnO2 detects CO2 && VOC))
  *  A BME280 (I2C--> 0x76) was added to the project starting with the 04-07-2019 pre-release.
- *  This project 
+ *  An RTC (DS3231) and Touch sensor (with INT0) has also been added to this project. 
  * 
  *  Requirements:
  *

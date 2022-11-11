@@ -27,3 +27,25 @@
  *   Created: Feb 6, 2019 by Dan Parkolay (with a lot of help from a lot of other people)
  *   Updated: Oct 9, 2022 by Dan Parkolay (Removed HTM1735LF, updated Display values added INT for DST input)
 */
+as of 11-10-2022
+Using library U8g2 at version 2.33.15 in folder: D:\Github\libraries\U8g2 
+Using library SparkFun BME280 at version 2.0.10 in folder: D:\Github\libraries\SparkFun_BME280_Arduino_Library 
+Using library Wire at version 1.0 in folder: C:\Users\ut4445o\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.6\libraries\Wire 
+Using library SPI at version 1.0 in folder: C:\Users\ut4445o\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.6\libraries\SPI 
+Using library RTCLib by NeiroN at version 1.6.2 in folder: D:\Github\libraries\RTCLib_by_NeiroN 
+Using library HCWireless in folder: D:\Github\libraries\HCWireless (legacy)
+"C:\\Users\\ut4445o\\AppData\\Local\\Arduino15\\packages\\arduino\\tools\\avr-gcc\\7.3.0-atmel3.6.1-arduino7/bin/avr-size" -A "C:\\Users\\ut4445o\\AppData\\Local\\Temp\\arduino-sketch-CCC7E1FB68E3BD453D5ACB884EDD52CA/WeatherBox.ino.elf"
+Sketch uses 24048 bytes (78%) of program storage space. Maximum is 30720 bytes.
+Global variables use 1334 bytes (65%) of dynamic memory, leaving 714 bytes for local variables. Maximum is 2048 bytes.
+
+as of 11-11-2022
+Using library Wire at version 1.0 in folder: C:\Users\ut4445o\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.6\libraries\Wire 
+Using library U8g2 at version 2.33.15 in folder: D:\Github\libraries\U8g2 
+Using library SparkFun BME280 at version 2.0.10 in folder: D:\Github\libraries\SparkFun_BME280_Arduino_Library 
+Using library SPI at version 1.0 in folder: C:\Users\ut4445o\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.6\libraries\SPI 
+Using library RTCLib by NeiroN at version 1.6.2 in folder: D:\Github\libraries\RTCLib_by_NeiroN 
+Using library SolarCalculator at version 2.0.1 in folder: D:\Github\libraries\SolarCalculator 
+Using library HCWireless in folder: D:\Github\libraries\HCWireless (legacy)
+"C:\\Users\\ut4445o\\AppData\\Local\\Arduino15\\packages\\arduino\\tools\\avr-gcc\\7.3.0-atmel3.6.1-arduino7/bin/avr-size" -A "C:\\Users\\ut4445o\\AppData\\Local\\Temp\\arduino-sketch-CCC7E1FB68E3BD453D5ACB884EDD52CA/WeatherBox.ino.elf"
+Sketch uses 29988 bytes (97%) of program storage space. Maximum is 30720 bytes.
+Global variables use 1402 bytes (68%) of dynamic memory, leaving 646 bytes for local variables. Maximum is 2048 bytes.

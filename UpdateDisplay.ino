@@ -33,47 +33,13 @@ void UpdateDisplay()
   GetLine3();
   GetLine4();
   GetLine5();
-  //GetLine6();
+  GetLine6();
 }
 
 void GetLine1()
 {
-    u8g2.setFont(u8g2_font_ncenB10_tr);
-    u8g2.setCursor(0,13);
-    //u8g2.print(" "); 
-    if (hours <=9)
-    {
-      u8g2.print("0"); 
-    }
-    u8g2.print(hours); 
-    u8g2.print(":"); 
-    if (minutes <=9)
-    {
-      u8g2.print("0"); 
-    }
-    u8g2.print(minutes); 
-    u8g2.print(":"); 
-    if (seconds <=9)
-    {
-      u8g2.print("0"); 
-    }
-    u8g2.print(seconds); 
-    
-    u8g2.setCursor(64,13); //start calendar in the middle
-    if (days <=9)
-    {
-      u8g2.print("0"); 
-    }
-    u8g2.print(days); 
-    u8g2.print("/"); 
-    if (months <=9)
-    {
-      u8g2.print("0"); 
-    }
-    u8g2.print(months); 
-    u8g2.print("/"); 
-    u8g2.print(years); 
-    u8g2.print(" "); 
+    u8g2.setFont(u8g2_font_ncenB12_tr);
+    u8g2.drawStr(0,13,"Air Qty Sensor");//I don't know if this will fit on display :(
 }
 
 void GetLine2()
@@ -81,7 +47,6 @@ void GetLine2()
     u8g2.setFont(u8g2_font_ncenB08_tr);
     u8g2.setCursor(0,24);
     u8g2.print(AirQualitySensorValue);
-    u8g2.print(" Air Quality");
 }
 
 void GetLine3()

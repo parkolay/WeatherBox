@@ -15,9 +15,10 @@
  *  // Pinout
  *
  *  //  MQ135 analog Output --> A00
- *  //  Interrupt           --> D02 with INT0
+ *  //  DST Interrupt       --> D02 with INT0
  *  //  Data Tx             --> TX_PIN 7
  *  //  Data Rx             --> RX_PIN 8
+ *  //  RTC Update pin      --> D12
  *  //  SCL                 --> A04 Tied HIGH W/ 3k3 Ohm resistor
  *  //  SDA                 --> A05 Tied HIGH W/ 3k3 Ohm resistor
  *   
@@ -71,6 +72,8 @@ typedef struct
 Tx_teststruct Txdata;
 
 // constants won't change. They're used here to set pin numbers:
+const long VERSION = 76664;     // star date had to be more than 65535 didn't it...
+const int RTC_UPDATE_PIN = 12;  // internal pull up that can be sent to ground to set RTC to PC during flash
 const int DSTSwitchPin = 2;     // the number of the pushbutton pin
 int DSTSwitch_mode = 1;
 
@@ -96,7 +99,7 @@ double transit, sunrise, sunset;
 double latitude = 39.7565;
 double longitude = -77.966;
 double HoursOLight = 0;
-int utc_offset = -5;
+int utc_offset = -4;  //this accounts for DST and updated with DST switch
 
 int SunRiseHour = 0;
 int SunRiseMinute = 0;
@@ -107,9 +110,13 @@ bool DebugOn = false; //set to true for debug serial messages
 
 void setup(void) 
 {
+  pinMode(RTC_UPDATE_PIN, INPUT_PULLUP);    //set pin D12 as input with pullup to allow for RTC update during flash
+
   Wire.begin();
   Serial.begin(57600);
   Serial.println("initializing Weather Box 10/14/22...");
+  Serial.println("Version ");
+  Serial.println(VERSION);
 
   SetupRTC();
    Serial.println("initializing RTC DS3231...");
@@ -162,13 +169,16 @@ void loop(void)
   UpdateMQ135();    //get Air Quality Data
   UpdateBME280();   //get BME data
   // DebugBMEData();   //Get BME Data (send out serial data with readings)
-  UpdateTime();     //GEt time date data
-      if(millis() >= Current_Time + DelayPeriod)
-    {
-      //put "delay" items in here
-        TxWireless();
-        Current_Time += DelayPeriod;
-    }
+  UpdateTime();     //Get time date data
+  GetSunriseSunset();
+
+  //used instead of wait or delay
+  if(millis() >= Current_Time + DelayPeriod)
+  {
+     //put "delay" items in here
+     TxWireless();
+     Current_Time += DelayPeriod;
+  }
 
   delay(100);       
   u8g2.firstPage();

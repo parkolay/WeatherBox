@@ -23,7 +23,8 @@
     Page Buffer Examples: firstPage/nextPage. Less RAM usage, should work with all Arduino boards.
     U8x8 Text Only Example: No RAM usage, direct communication with display controller. No graphics, 8x8 Text only.
     
-  This is a page buffer example.    
+  This is a page buffer example.
+  //u8g2.print("012345678901234567890");     
 */
 
 void UpdateDisplay()
@@ -38,32 +39,60 @@ void UpdateDisplay()
 
 void GetLine1()
 {
-    u8g2.setFont(u8g2_font_ncenB12_tr);
-    u8g2.drawStr(0,13,"Air Qty Sensor");//I don't know if this will fit on display :(
+    u8g2.setFont(u8g2_font_ncenB10_tr);
+    u8g2.setCursor(0,13);
+    if (hours <=9) {u8g2.print("0");}   //see comments below in getline2()
+    u8g2.print(hours); 
+    u8g2.print(":"); 
+    if (minutes <=9){u8g2.print("0");}
+    u8g2.print(minutes); 
+    u8g2.print(":"); 
+    if (seconds <=9){u8g2.print("0");}
+    u8g2.print(seconds); 
+    u8g2.setCursor(64,13);              //start calendar in the middle
+    if (days <=9){u8g2.print("0");}
+    u8g2.print(days); 
+    u8g2.print("/"); 
+    if (months <=9){u8g2.print("0");}
+    u8g2.print(months); 
+    u8g2.print("/"); 
+    u8g2.print(years); 
+    u8g2.print(" ");  
 }
 
 void GetLine2()
 {
     u8g2.setFont(u8g2_font_ncenB08_tr);
     u8g2.setCursor(0,24);
-    u8g2.print(AirQualitySensorValue);
+    u8g2.print("Up ");
+    u8g2.print(SunRiseHour);
+    u8g2.print(":");
+      if (SunRiseMinute <=9){u8g2.print("0");}//not normally how I roll, but in this case 
+    u8g2.print(SunRiseMinute);
+    u8g2.print(" "); 
+    u8g2.print(HoursOLight);
+    u8g2.setCursor(72,24);
+    u8g2.print("Dn ");
+    u8g2.print(SunSetHour);
+    u8g2.print(":");
+      if (SunSetMinute <=9){u8g2.print("0");} //I think a little more clear what I want
+    u8g2.print(SunSetMinute);
 }
 
 void GetLine3()
 {
     u8g2.setCursor(0,34);
-    u8g2.print("Dew Point = ");
+    u8g2.print("DP = ");
     u8g2.print(BME280_DewPoint);
-    u8g2.println(" *f");
-    // u8g2.setCursor(42,34);
-    // u8g2.print("012345678901234567890");
-    
+    u8g2.println("*f");
+    u8g2.setCursor(72,34);
+    u8g2.print(" AQ = ");
+    u8g2.print(AirQualitySensorValue);   
 }
 
 void GetLine4()
 {
     u8g2.setCursor(0,44);
-    //u8g2.print("012345678901234567890"); 
     u8g2.print(BME280_Humidity); 
     //u8g2.setCursor(32,54); 
     u8g2.print("%RH"); 
@@ -74,8 +103,6 @@ void GetLine4()
 
 void GetLine5()
 {
-    //u8g2.setCursor(0,54);
-    //u8g2.print("012345678901234567890"); 
     u8g2.setCursor(0,54);
     u8g2.print(BME280_Temperature);
     u8g2.print(" *C ");
@@ -88,41 +115,24 @@ void GetLine5()
 
 void GetLine6()
 {
-    u8g2.setFont(u8g2_font_ncenB08_tr);
-    u8g2.setCursor(0,64);
-    //u8g2.print(" "); 
-
-    if (hours <=9)
-    {
-      u8g2.print("0"); 
-    }
-    u8g2.print(hours); 
-    u8g2.print(":"); 
-    if (minutes <=9)
-    {
-      u8g2.print("0"); 
-    }
-    u8g2.print(minutes); 
-    u8g2.print(":"); 
-    if (seconds <=9)
-    {
-      u8g2.print("0"); 
-    }
-    u8g2.print(seconds); 
+    // u8g2.setFont(u8g2_font_ncenB08_tr);
+    // u8g2.setCursor(0,64);
+    // if (hours <=9){u8g2.print("0");}
+    // u8g2.print(hours); 
+    // u8g2.print(":"); 
+    // if (minutes <=9){u8g2.print("0");}
+    // u8g2.print(minutes); 
+    // u8g2.print(":"); 
+    // if (seconds <=9){u8g2.print("0");}
+    // u8g2.print(seconds); 
     
-    u8g2.setCursor(64,64); //start calendar in the middle
-    if (days <=9)
-    {
-      u8g2.print("0"); 
-    }
-    u8g2.print(days); 
-    u8g2.print("/"); 
-    if (months <=9)
-    {
-      u8g2.print("0"); 
-    }
-    u8g2.print(months); 
-    u8g2.print("/"); 
-    u8g2.print(years); 
-    u8g2.print(" "); 
+    // u8g2.setCursor(64,64); //start calendar in the middle
+    // if (days <=9){u8g2.print("0");}
+    // u8g2.print(days); 
+    // u8g2.print("/"); 
+    // if (months <=9){u8g2.print("0");}
+    // u8g2.print(months); 
+    // u8g2.print("/"); 
+    // u8g2.print(years); 
+    // u8g2.print(" "); 
 }

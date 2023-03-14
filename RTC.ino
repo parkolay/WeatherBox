@@ -6,14 +6,16 @@
  * DAP - 09-28-2021 added more vars 
  * DAP - 11-11-2022 updated setupRTC() 
  * DAP - 11-11-2022 Added DST SW and SunRise/SunSet
+   DAP - 03-14-2023 Added RTC_UPDATE_PIN
  */
 
 void SetupRTC()
 {
   //initialize RTC
   rtc.begin();
- 
-  if (! rtc.isrunning()) //if RTC is not running try to set it 
+
+  //if RTC is not running OR RTC_UPDATE_PIN is pulled LOW try to set it 
+  if (! rtc.isrunning() || digitalRead(RTC_UPDATE_PIN) == LOW) 
   {
     char t[32];
     Serial.println("RTC is NOT running!");
@@ -42,6 +44,7 @@ void UpdateRTC()
     Serial.println(now.format(buf));
     delay(1000);
 }
+
 void UpdateTime()
 {
   DateTime now = rtc.now();
@@ -63,7 +66,14 @@ void UpdateTime()
     if (DSTSwitch_mode == 0)
     {
       hours -= 1;
+      utc_offset = -5;
       Serial.println(hours);
+      Serial.println(utc_offset);
+    }
+    else if (DSTSwitch_mode == 1)
+    {
+      utc_offset = -4;
+      Serial.println(utc_offset);
     }
     
 }  // end void UpdateTime()
@@ -84,26 +94,26 @@ void GetSunriseSunset()
   // Print Debug results
   if (DebugOn == true)
   { 
-  Serial.print("SunRise ");
-  Serial.println((sunrise + utc_offset));   //this ended up being a decimal hour
-  Serial.print(SunRiseHour);
-  Serial.print(":");
+    Serial.print("SunRise ");
+    Serial.println((sunrise + utc_offset));   //this ended up being a decimal hour
+    Serial.print(SunRiseHour);
+    Serial.print(":");
     if (SunRiseMinute <=9)
     {
       Serial.print("0"); 
     }
-  Serial.println(SunRiseMinute);
-  Serial.print("Hours Of Light ");
-  Serial.println(HoursOLight);
-  Serial.print("SunSet ");
- // Serial.println((transit + utc_offset));
-  Serial.println((sunset + utc_offset));
+    Serial.println(SunRiseMinute);
+    Serial.print("Hours Of Light ");
+    Serial.println(HoursOLight);
+    Serial.print("SunSet ");
+  // Serial.println((transit + utc_offset));
+    Serial.println((sunset + utc_offset));
     Serial.print(SunSetHour);
-  Serial.print(":");
+    Serial.print(":");
     if (SunSetMinute <=9)
     {
       Serial.print("0"); 
     }
-  Serial.println(SunSetMinute);
+    Serial.println(SunSetMinute);
   }//if (DebugOn == true)
 }//end void GetSunriseSunset()

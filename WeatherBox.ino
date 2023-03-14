@@ -51,7 +51,7 @@
 BME280 bme280;
 
 //Initialize SSD1306 Display
-U8G2_SSD1306_128X64_NONAME_1_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
+U8G2_SSD1306_128X64_NONAME_1_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);  //U8G2_R0 was 13
 
 //Initialize RTC
 DS3231 rtc;
@@ -152,7 +152,7 @@ void loop(void)
       // Button was up before, but is pressed now. Set the button to pressed
       // and report that to the serial monitor.
       DSTSwitch_mode = 0;  // Button is pressed.
-        Serial.println("Button has been Set.");
+        Serial.println("Button has been pressed.");
     }
  
     else if (DSTSwitch_mode == 0) 
